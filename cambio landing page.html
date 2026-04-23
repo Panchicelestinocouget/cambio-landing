@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cambio — Never Miss a Deadline Again</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; color: #1a1a1a; background: #fff; }
+
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; border-bottom: 0.5px solid #e0e0e0; }
+    .nav-logo { font-size: 16px; font-weight: 500; color: #00B5A5; letter-spacing: 3px; }
+    .btn { background: #00B5A5; color: white; border: none; padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-block; }
+    .btn:hover { background: #009e90; }
+    .btn-full { width: 100%; text-align: center; padding: 14px; font-size: 15px; }
+
+    .hero { padding: 4rem 2rem 3rem; text-align: center; background: #D8EFE6; }
+    .badge { display: inline-block; background: #E1F5EE; color: #0F6E56; font-size: 11px; font-weight: 500; padding: 4px 14px; border-radius: 20px; margin-bottom: 1.25rem; letter-spacing: 1px; }
+    .hero h1 { font-size: 42px; font-weight: 500; color: #085041; margin-bottom: 1rem; line-height: 1.2; }
+    .hero p { font-size: 16px; color: #2D6B5E; max-width: 520px; margin: 0 auto 2rem; line-height: 1.7; }
+
+    .trusted { padding: 1.5rem 2rem; text-align: center; border-bottom: 0.5px solid #e0e0e0; }
+    .trusted-label { font-size: 11px; color: #999; letter-spacing: 1.5px; margin-bottom: 1.25rem; }
+    .logos { display: flex; align-items: center; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+    .logo-item { font-size: 16px; font-weight: 500; color: #555; letter-spacing: 0.5px; }
+
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 2rem; background: #f7f7f5; }
+    .stat { background: white; border: 0.5px solid #e0e0e0; border-radius: 12px; padding: 1.25rem; text-align: center; }
+    .stat-n { font-size: 28px; font-weight: 500; color: #00B5A5; }
+    .stat-l { font-size: 13px; color: #666; margin-top: 4px; }
+
+    .map { padding: 2.5rem 2rem; }
+    .section-h { font-size: 22px; font-weight: 500; margin-bottom: 0.35rem; color: #1a1a1a; }
+    .section-s { font-size: 14px; color: #666; margin-bottom: 1.5rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th { text-align: left; padding: 10px 14px; background: #f7f7f5; color: #666; font-weight: 500; border-bottom: 0.5px solid #e0e0e0; }
+    td { padding: 12px 14px; border-bottom: 0.5px solid #e0e0e0; color: #1a1a1a; }
+    tr:last-child td { border-bottom: none; }
+    .pill { display: inline-block; padding: 3px 12px; border-radius: 20px; font-size: 11px; font-weight: 500; }
+    .urgent { background: #FCEBEB; color: #A32D2D; }
+    .soon { background: #FAEEDA; color: #854F0B; }
+    .ok { background: #E1F5EE; color: #0F6E56; }
+
+    .form-section { padding: 2.5rem 2rem; background: #f7f7f5; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    label { display: block; font-size: 12px; color: #666; margin-bottom: 5px; }
+    input, select { width: 100%; padding: 10px 14px; border: 0.5px solid #d0d0d0; border-radius: 8px; font-size: 14px; font-family: inherit; background: white; color: #1a1a1a; outline: none; }
+    input:focus, select:focus { border-color: #00B5A5; }
+    .form-note { font-size: 12px; color: #999; text-align: center; margin-top: 10px; }
+
+    .before-after { padding: 2.5rem 2rem; }
+    .ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .ba-col { border-radius: 12px; padding: 1.5rem; }
+    .ba-col.before { background: #FCEBEB; border: 0.5px solid #F09595; }
+    .ba-col.after { background: #E1F5EE; border: 0.5px solid #5DCAA5; }
+    .ba-label { font-size: 11px; font-weight: 500; letter-spacing: 1px; margin-bottom: 1rem; }
+    .before .ba-label { color: #A32D2D; }
+    .after .ba-label { color: #0F6E56; }
+    .ba-item { font-size: 13px; margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+    .before .ba-item { color: #791F1F; }
+    .after .ba-item { color: #085041; }
+    .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+    .before .dot { background: #E24B4A; }
+    .after .dot { background: #1D9E75; }
+
+    footer { padding: 1.5rem 2rem; text-align: center; border-top: 0.5px solid #e0e0e0; }
+    footer p { font-size: 12px; color: #999; }
+    footer a { color: #00B5A5; text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 28px; }
+      .stats { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .ba-grid { grid-template-columns: 1fr; }
+      .logos { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">CAMBIO</span>
+  <a href="#form" class="btn">Talk to sales</a>
+</nav>
+
+<div class="hero">
+  <div class="badge">AI Benchmarking Agent — now live</div>
+  <h1>Never miss a deadline again.</h1>
+  <p>Cambio automatically collects tenant data, tracks every jurisdiction, and submits your regulatory filings. No chasing. No stitching tools together. No fire drills.</p>
+  <a href="#form" class="btn">Get started</a>
+</div>
+
+<div class="trusted">
+  <p class="trusted-label">TRUSTED BY LEADING CRE FUNDS</p>
+  <div class="logos">
+    <span class="logo-item">nuveen</span>
+    <span class="logo-item">Principal</span>
+    <span class="logo-item">BGO</span>
+    <span class="logo-item">LaSalle</span>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat">
+    <div class="stat-n">4x</div>
+    <div class="stat-l">higher data quality scores</div>
+  </div>
+  <div class="stat">
+    <div class="stat-n">40%</div>
+    <div class="stat-l">less manual work</div>
+  </div>
+  <div class="stat">
+    <div class="stat-n">100s</div>
+    <div class="stat-l">of properties managed</div>
+  </div>
+</div>
+
+<div class="map">
+  <h2 class="section-h">2025 benchmarking deadline map</h2>
+  <p class="section-s">Every U.S. city with mandatory energy reporting — deadlines, requirements, and penalties in one place.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>City</th>
+        <th>Deadline</th>
+        <th>Min. size</th>
+        <th>Penalty</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>New York, NY</td><td>May 1, 2025</td><td>25,000 sq ft</td><td>Up to $1,000/yr</td><td><span class="pill urgent">8 days left</span></td></tr>
+      <tr><td>Boston, MA</td><td>May 15, 2025</td><td>20,000 sq ft</td><td>Up to $1,000/report</td><td><span class="pill urgent">22 days left</span></td></tr>
+      <tr><td>Chicago, IL</td><td>June 1, 2025</td><td>50,000 sq ft</td><td>Up to $2,000</td><td><span class="pill soon">39 days left</span></td></tr>
+      <tr><td>Los Angeles, CA</td><td>June 1, 2025</td><td>20,000 sq ft</td><td>$100/day</td><td><span class="pill soon">39 days left</span></td></tr>
+      <tr><td>Seattle, WA</td><td>June 1, 2025</td><td>20,000 sq ft</td><td>Up to $5,000</td><td><span class="pill soon">39 days left</span></td></tr>
+      <tr><td>Denver, CO</td><td>June 1, 2025</td><td>25,000 sq ft</td><td>Up to $2,000</td><td><span class="pill soon">39 days left</span></td></tr>
+      <tr><td>Atlanta, GA</td><td>July 1, 2025</td><td>25,000 sq ft</td><td>$1,000–$3,000</td><td><span class="pill ok">69 days left</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="form-section" id="form">
+  <h2 class="section-h">How are you handling compliance today?</h2>
+  <p class="section-s">Tell us about your portfolio and we'll show you how much time Cambio can save your team — usually within 24 hours.</p>
+  <div class="form-grid">
+    <div><label>First name</label><input type="text" placeholder="First name"></div>
+    <div><label>Last name</label><input type="text" placeholder="Last name"></div>
+  </div>
+  <div class="form-grid">
+    <div><label>Work email</label><input type="email" placeholder="you@fund.com"></div>
+    <div><label>Fund / company</label><input type="text" placeholder="Company name"></div>
+  </div>
+  <div style="margin-bottom:14px;">
+    <label>How are you managing benchmarking today?</label>
+    <select>
+      <option>Manually — spreadsheets and emails</option>
+      <option>External vendor or consultant</option>
+      <option>Another software tool</option>
+      <option>We're not managing it yet</option>
+    </select>
+  </div>
+  <div style="margin-bottom:20px;">
+    <label>Number of properties</label>
+    <select>
+      <option>1–10</option>
+      <option>10–50</option>
+      <option>50–200</option>
+      <option>200+</option>
+    </select>
+  </div>
+  <button class="btn btn-full">Talk to our team</button>
+  <p class="form-note">No commitment. We'll reach out within 24 hours.</p>
+</div>
+
+<div class="before-after">
+  <h2 class="section-h">What changes with Cambio</h2>
+  <p class="section-s">From annual fire drill to compliance that runs itself.</p>
+  <div class="ba-grid">
+    <div class="ba-col before">
+      <div class="ba-label">WITHOUT CAMBIO</div>
+      <div class="ba-item"><span class="dot"></span>Manually chasing tenants for LOAs and utility data</div>
+      <div class="ba-item"><span class="dot"></span>Tracking deadlines across 10–20 buildings in spreadsheets</div>
+      <div class="ba-item"><span class="dot"></span>Switching between 3+ tools to compile and submit</div>
+      <div class="ba-item"><span class="dot"></span>Data gaps that put filings at risk</div>
+      <div class="ba-item"><span class="dot"></span>Every year feels like starting from scratch</div>
+    </div>
+    <div class="ba-col after">
+      <div class="ba-label">WITH CAMBIO</div>
+      <div class="ba-item"><span class="dot"></span>Automated tenant outreach — Cambio follows up for you</div>
+      <div class="ba-item"><span class="dot"></span>Every deadline tracked, every jurisdiction mapped</div>
+      <div class="ba-item"><span class="dot"></span>One platform from data collection to regulatory filing</div>
+      <div class="ba-item"><span class="dot"></span>4x higher data quality, fewer gaps, fewer risks</div>
+      <div class="ba-item"><span class="dot"></span>A compliance program that essentially runs itself</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Cambio AI · <a href="https://cambio.ai">cambio.ai</a></p>
+</footer>
+
+</body>
+</html>
